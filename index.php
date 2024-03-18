@@ -56,11 +56,35 @@
             </p>
         </section>
         <?php //@todo Add a contact form  ?>
-        <section>
-            <a href="result.php">resultat</a>
+        <section class="container">
+            <!-- <a href="result.php">resultat</a> Bouton de test de la seconde page -->
             <h2 id="contact">Get in Touch</h2>
             <p>Leave us a message and we will get back to you as soon as possible</p>
             <p>Fields marked with a red wildcards * are required</p>
+            <form id="myForm" class="form-container" action="result.php" method="post">
+                <label for="name">Name <span class ='redstar'>*</span></label>
+                <br>
+                <input type="text" id="name" name="name" value="<?= $contact['name'] ?? '' ?>">
+                <br>
+                <label for="email">Email <span class ='redstar'>*</span></label>
+                <br>
+                <input type="text" id="email" name="email" value="<?= $contact['email'] ?? '' ?>">
+                <br>
+                <label for="subject">Subject <span class ='redstar'>*</span></label>
+                <br>
+                <select name="pets" id="pet-select">
+                    <option value=""></option>
+                    <option value="appointment">Schedule an appointment</option>
+                    <option value="newsletter">Subscribe to the newsletter</option>
+                    <option value="quotation">Asking for a quotation</option>
+                </select>
+                <br>
+                <label for="message">Message</label>
+                <br>
+                <textarea id="message" name="message" rows="10" cols="33" maxlength="500" wrap></textarea> 
+                <br>
+                <button>Send</button> 
+            </form>
         </section>
     </main>
     <?php include '_footer.php' ?>
