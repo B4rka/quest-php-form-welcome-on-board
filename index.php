@@ -64,15 +64,15 @@
             <form id="myForm" class="form-container" action="result.php" method="post">
                 <label for="name">Name <span class ='redstar'>*</span></label>
                 <br>
-                <input type="text" id="name" name="name" value="<?= $contact['name'] ?? '' ?>">
+                <input type="text" id="name" name="name" required value="<?= $contact['name'] ?? '' ?>">
                 <br>
                 <label for="email">Email <span class ='redstar'>*</span></label>
                 <br>
-                <input type="text" id="email" name="email" value="<?= $contact['email'] ?? '' ?>">
+                <input type="text" id="email" name="email" required value="<?= $contact['email'] ?? '' ?>">
                 <br>
                 <label for="subject">Subject <span class ='redstar'>*</span></label>
                 <br>
-                <select name="pets" id="pet-select">
+                <select id="pet-select" name="pets" required>
                     <option value=""></option>
                     <option value="appointment">Schedule an appointment</option>
                     <option value="newsletter">Subscribe to the newsletter</option>
