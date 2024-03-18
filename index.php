@@ -56,6 +56,11 @@
             </p>
         </section>
         <?php //@todo Add a contact form  ?>
+        <section>
+            <h2 id="contact">Get in Touch</h2>
+            <p>Leave us a message and we will get back to you as soon as possible</p>
+            <p>Fields marked with a red wildcards * are required</p>
+        </section>
     </main>
     <?php include '_footer.php' ?>
 </body>
