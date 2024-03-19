@@ -3,6 +3,7 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //traitement des données de l'utilisateur
     $contact = array_map('trim', $_POST);
+    $contact = array_map('htmlentities', $_POST);
     if (empty($contact['name'])) {
         $errors[]= 'Name is required';
     }
@@ -93,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <li><?= $error ?></li>
                     <?php endforeach; ?>
                 </ul>
-                <?php else : ?>
+                <?php else : ?> <!-- S'il n'y a pas d'erreur, on affiche alors le texte d'accueil-->
                     <p>Leave us a message and we will get back to you as soon as possible</p>
                     <p>Fields marked with a red wildcards * are required</p>
             <?php endif; ?>
@@ -101,15 +102,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form id="myForm" class="form-container" method="post">
                 <label for="name">Name <span class ='redstar'>*</span></label>
                 <br>
-                <input type="text" id="name" name="name" required value="<?= $contact['name'] ?? '' ?>">
+                <input type="text" id="name" name="name" value="<?= $contact['name'] ?? '' ?>">
                 <br>
                 <label for="email">Email <span class ='redstar'>*</span></label>
                 <br>
-                <input type="email" id="email" name="email" required value="<?= $contact['email'] ?? '' ?>">
+                <input type="email" id="email" name="email" value="<?= $contact['email'] ?? '' ?>">
                 <br>
                 <label for="subject">Subject <span class ='redstar'>*</span></label>
                 <br>
-                <select id="subject" name="subject" required>
+                <select id="subject" name="subject">
                     <option value=""></option>
                     <option value="appointment">Schedule an appointment</option>
                     <option value="newsletter">Subscribe to the newsletter</option>
@@ -126,5 +127,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
     <?php include '_footer.php' ?>
 </body>
-
 </html>
