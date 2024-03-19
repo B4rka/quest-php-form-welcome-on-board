@@ -40,6 +40,16 @@ img {
     padding: 0 var(--spacing);
 }
 
+.container ul, .error-manager {
+    max-width: 60ch;
+    margin-inline: auto;
+}
+
+.error-manager h2 {
+    text-align: left;
+    font-size: 1rem;
+}
+
 .form-container {
     max-width: 60ch;
     margin-inline: auto;

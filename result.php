@@ -16,6 +16,7 @@
         <?php include '_navbar.php' ?>
     </header>
     <main>
+        <!-- <?php var_dump($_POST); ?> -->
         <section class="container">
             <h1>Thank you for your message!</h1>
             <p>Your message is being processed. <br>

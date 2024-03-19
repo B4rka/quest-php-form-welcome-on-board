@@ -1,3 +1,28 @@
+<?php
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //traitement des données de l'utilisateur
+    $contact = array_map('trim', $_POST);
+    if (empty($contact['name'])) {
+        $errors[]= 'Name is required';
+    }
+    if (empty($contact['email'])) {
+        $errors[]= 'Email is required';
+    }
+    if (empty($contact['subject'])) {
+        $errors[] = 'Please choose a subject in the list';
+    }
+    if(empty($errors)) {
+        // Traitement du formulaire
+        // ...
+        // Puis redirection de l'utilisateur vers une page de résultat 'result.php'
+        header('Location: result.php');
+        exit();
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,20 +84,32 @@
         <section class="container">
             <!-- <a href="result.php">resultat</a> Bouton de test de la seconde page -->
             <h2 id="contact">Get in Touch</h2>
-            <p>Leave us a message and we will get back to you as soon as possible</p>
-            <p>Fields marked with a red wildcards * are required</p>
-            <form id="myForm" class="form-container" action="result.php" method="post">
+            <div class="error-manager">
+            <?php if (!empty($errors)) : ?>
+                <!-- Si il y a des erreurs, on les affiche ici -->
+                <h2 class="error-message">Please fix the errors below</h2>
+                <ul>
+                    <?php foreach ($errors as $error) : ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php else : ?>
+                    <p>Leave us a message and we will get back to you as soon as possible</p>
+                    <p>Fields marked with a red wildcards * are required</p>
+            <?php endif; ?>
+            </div>
+            <form id="myForm" class="form-container" method="post">
                 <label for="name">Name <span class ='redstar'>*</span></label>
                 <br>
                 <input type="text" id="name" name="name" required value="<?= $contact['name'] ?? '' ?>">
                 <br>
                 <label for="email">Email <span class ='redstar'>*</span></label>
                 <br>
-                <input type="text" id="email" name="email" required value="<?= $contact['email'] ?? '' ?>">
+                <input type="email" id="email" name="email" required value="<?= $contact['email'] ?? '' ?>">
                 <br>
                 <label for="subject">Subject <span class ='redstar'>*</span></label>
                 <br>
-                <select id="pet-select" name="pets" required>
+                <select id="subject" name="subject" required>
                     <option value=""></option>
                     <option value="appointment">Schedule an appointment</option>
                     <option value="newsletter">Subscribe to the newsletter</option>
